@@ -19,11 +19,17 @@
             on type="number" input fields by design.
         -->
 
+        <!-- To prevent the cursor from moving to the start of the input field, we are 
+            using onfocus="this.value = this.value;". This ensures that the cursor stays
+            at the end of the input field when the user clicks on it.
+        -->
+
         <input
           type="text"
           oninput="this.value = this.value.replace(/[^0-9]/g, '')"
           id="selected-day"
           class="date-input"
+          onfocus="this.value = this.value;"
           maxlength="2"
         />
 
@@ -33,6 +39,7 @@
           oninput="this.value = this.value.replace(/[^0-9]/g, '')"
           id="selected-month"
           class="date-input"
+          onfocus="this.value = this.value;"
           maxlength="2"
         />
         <span class="date-separator">/</span>
@@ -41,6 +48,7 @@
           oninput="this.value = this.value.replace(/[^0-9]/g, '')"
           id="selected-year"
           class="date-input"
+          onfocus="this.value = this.value;"
           maxlength="4"
         />
       </div>

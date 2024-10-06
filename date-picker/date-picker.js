@@ -7,6 +7,7 @@ import {
   next_month_element,
   prev_month_element,
   days_container,
+  date_input_element,
 } from "./constants.js";
 import { getPrefixDay, getPrefixMonth } from "./utils.js";
 
@@ -50,6 +51,31 @@ function setSelectedDate() {
 
 function setCurrentMonthAndYear() {
   month_element.textContent = `${months[month]} ${year}`;
+}
+
+// Function to set current date via input
+export function updateCurrentDayViaInput(inputDay) {
+  /**
+   * When updating the date via input, we need to check if the date is valid.
+   * Conditions:
+   * 1. The day should be between 1 and 31. Anything outside this range is invalid.
+   *      1.1 - Add an invalid class to the input element if the day is invalid.
+   * 2. If user has given a day less than 10, we need to add a prefix 0 to it.
+   * 3. Once day is set, we can focus on the month input.
+   */
+  const day = parseInt(inputDay);
+
+  if (day > 31 || day < 1) {
+    date_input_element.classList.add("invalid");
+    return;
+  }
+
+  date_input_element.classList.remove("invalid");
+  selectedDay = day;
+
+  generateDates();
+
+  return getPrefixDay(day);
 }
 
 function goToNextMonth() {

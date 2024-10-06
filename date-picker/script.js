@@ -1,4 +1,4 @@
-import { checkClassExists } from "./utils.js";
+import { checkClassExists, checkIdExists } from "./utils.js";
 import { date_picker_wrapper, dates_container } from "./constants.js";
 
 // Import the date-picker module to run the non-function code. Ex: Setting current month and year!
@@ -10,7 +10,7 @@ import "./dateInputActions.js";
 // Toggle the date picker on click of the date_picker_wrapper
 date_picker_wrapper.addEventListener("click", toggleDatePicker);
 
-function toggleDatePicker(e) {
+export function toggleDatePicker(e) {
   /**
    * Since everything is date_picker_wrapper, we need to stop hiding the
    * date picker when we click on the date picker wrapper. This can be done
@@ -34,8 +34,8 @@ function toggleDatePicker(e) {
    * TODO: Optimize the algorithm here!
    */
 
-  const inputClasses = ["selected-day", "selected-month", "selected-year"];
-  if (inputClasses.some((inputClass) => checkClassExists(path, inputClass)))
+  const inputIDs = ["selected-day", "selected-month", "selected-year"];
+  if (inputIDs.some((inputClass) => checkIdExists(path, inputClass)))
     dates_container.classList.add("active");
 }
 

@@ -13,6 +13,10 @@ function checkClassExists(elements, className) {
   );
 }
 
+function checkIdExists(elements, id) {
+  return elements.some((element) => element.id === id);
+}
+
 function getPrefixDay(day) {
   if (day < 10) {
     return `0${day}`;
@@ -27,4 +31,4 @@ function getPrefixMonth(month) {
   return month;
 }
 
-export { checkClassExists, getPrefixDay, getPrefixMonth };
+export { checkClassExists, checkIdExists, getPrefixDay, getPrefixMonth };

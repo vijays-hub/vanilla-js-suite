@@ -6,6 +6,7 @@ const next_month_element = document.querySelector(".month .next-month");
 const prev_month_element = document.querySelector(".month .prev-month");
 const days_container = document.querySelector(".days-container");
 
+const date_input_element = document.querySelector(".date-input");
 const selected_date_element = document.querySelector(".selected-date");
 const selected_day_element = document.getElementById("selected-day");
 const selected_month_element = document.getElementById("selected-month");
@@ -13,6 +14,7 @@ const selected_year_element = document.getElementById("selected-year");
 
 export {
   date_picker_wrapper,
+  date_input_element,
   selected_date_element,
   selected_day_element,
   selected_month_element,
