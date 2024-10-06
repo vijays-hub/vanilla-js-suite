@@ -6,6 +6,7 @@ import {
 import {
   updateCurrentDayViaInput,
   updateCurrentMonthViaInput,
+  updateCurrentYearViaInput,
 } from "./date-picker.js";
 
 selected_day_element.addEventListener("change", (e) => {
@@ -25,5 +26,13 @@ selected_month_element.addEventListener("change", (e) => {
 
     // Focus on the year element
     selected_year_element.focus();
+  }
+});
+
+selected_year_element.addEventListener("change", (e) => {
+  const year = updateCurrentYearViaInput(e.target.value);
+
+  if (year) {
+    selected_year_element.value = year;
   }
 });

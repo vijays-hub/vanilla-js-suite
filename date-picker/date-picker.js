@@ -45,7 +45,7 @@ prev_month_element.addEventListener("click", goToPrevMonth);
 
 function setSelectedDate() {
   selected_day_element.value = getPrefixDay(selectedDay);
-  selected_month_element.value = getPrefixMonth(selectedMonth);
+  selected_month_element.value = getPrefixMonth(selectedMonth + 1);
   selected_year_element.value = selectedYear;
 }
 
@@ -99,13 +99,36 @@ export function updateCurrentMonthViaInput(inputMonth) {
   }
 
   selected_month_element.classList.remove("invalid");
-  month = userMonth - 1; // Since JS months are zero-based
-  selectedMonth = month;
+  month = selectedMonth = userMonth - 1; // Since JS months are zero-based
 
   generateDates();
   setCurrentMonthAndYear(); // Update the month and year in the date picker UI.
 
   return getPrefixMonth(userMonth);
+}
+
+export function updateCurrentYearViaInput(inputYear) {
+  /**
+   * When updating the year via input, we need to check if the year is valid.
+   * Conditions:
+   * 1. The year should be between 1900 and 2100. Anything outside this range is invalid.
+   *      1.1 - Add an invalid class to the input element if the year is invalid.
+   * 2. If the year is valid, we need to update the selected year and generate the dates.
+   */
+  const userYear = parseInt(inputYear);
+
+  if (userYear < 1900 || userYear > 2100) {
+    selected_year_element.classList.add("invalid");
+    return;
+  }
+
+  selected_year_element.classList.remove("invalid");
+  year = selectedYear = userYear;
+
+  generateDates();
+  setCurrentMonthAndYear(); // Update the month and year in the date picker UI.
+
+  return year;
 }
 
 // TODO: Rethink the updating dates via input. I think there is scope for re-usability here. -- START
@@ -235,5 +258,6 @@ export function generateDates() {
 
 // Set the selected date
 setSelectedDate();
+
 // Fill the current month and year
 setCurrentMonthAndYear();
