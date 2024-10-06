@@ -1,3 +1,5 @@
+import { checkClassExists } from "./utils.js";
+
 // All the DOM elements
 const date_picker_wrapper = document.querySelector(".date-picker-wrapper");
 const selected_date = document.querySelector(".selected-date");
@@ -26,11 +28,4 @@ function toggleDatePicker(e) {
     // Try add if you want to always add the class
     dates_container.classList.toggle("active");
   }
-}
-
-function checkClassExists(elements, className) {
-  //   Check if classList exists and if it contains the class name being passed.
-  return elements.some(
-    (element) => element.classList && element.classList.contains(className)
-  );
 }
