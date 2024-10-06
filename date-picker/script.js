@@ -1,13 +1,9 @@
 import { checkClassExists } from "./utils.js";
+import { date_picker_wrapper, dates_container } from "./constants.js";
 
-// All the DOM elements
-const date_picker_wrapper = document.querySelector(".date-picker-wrapper");
-const selected_date = document.querySelector(".selected-date");
-const dates_container = document.querySelector(".dates-container");
-const month = document.querySelector(".month .month-item");
-const next_month = document.querySelector(".month .next-month");
-const prev_month = document.querySelector(".month .prev-month");
-const days_container = document.querySelectorAll(".days-container");
+// Import the date-picker module to run the non-function code. Ex: Setting current month and year!
+import "./date-picker.js";
+import { generateDates } from "./date-picker.js";
 
 // Toggle the date picker on click of the date_picker_wrapper
 date_picker_wrapper.addEventListener("click", toggleDatePicker);
@@ -29,3 +25,5 @@ function toggleDatePicker(e) {
     dates_container.classList.toggle("active");
   }
 }
+
+generateDates();
