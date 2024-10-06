@@ -4,6 +4,12 @@
   box-sizing: border-box;
 }
 
+:root {
+  --height: 200px;
+  /* In a month, we could at max have 5 weeks */
+  --boxSize: 5;
+}
+
 body {
   font-family: "Arial", sans-serif;
 }
@@ -54,4 +60,78 @@ h1 {
 
 .active {
   visibility: visible;
+}
+
+.month {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  color: white;
+  background-color: rgb(58 86 183);
+}
+
+.month .arrows {
+  width: 35px;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+  font-size: 14px;
+}
+
+.month .arrows:hover {
+  background-color: rgb(91 122 227);
+}
+
+.month .arrows:active {
+  background-color: rgb(91 122 227);
+}
+
+.days-container {
+  /* Since each week has 7 days, we would need 7 columns in a row.
+       Let's use display: grid to make it easier to layout the days.
+       We will also use grid-template-columns to make each column the same width.
+    */
+  display: grid;
+  grid-template-columns: repeat(7, 1fr);
+  height: var(--height);
+
+  /* 
+  This CSS rule sets the height of automatically created rows in a CSS Grid layout.
+  
+  - `grid-auto-rows`: This property defines the size of rows that are automatically created 
+    when content is placed in a row that is not explicitly defined in the grid template.
+  
+  - `calc(var(--height) / var(--boxSize))`: This uses the `calc()` function to calculate 
+    the height of each auto-generated row. It divides the value of the custom property 
+    `--height` by the value of the custom property `--boxSize`.
+    
+  In this example, if `--height` is 500px and `--boxSize` is 5, each auto-generated row 
+  will have a height of 100px (500px / 5).
+
+  This will also make sure that the spacing between each row is equal, irrespective of the
+    number of weeks in a month. If this is not set, the height of each row would be 
+    calculated based on the content inside it, which could lead to uneven spacing between rows.
+    Have a look at the UI in the app to understand this.
+*/
+  grid-auto-rows: calc(var(--height) / var(--boxSize));
+  background-color: rgb(54 49 56);
+}
+
+/* The .day class is added dynamically via JavaScript */
+.days-container .day {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  color: white;
+}
+
+.days-container .day:hover {
+  background-color: rgb(91 122 227);
+}
+
+/* The .selected class is added dynamically via JavaScript */
+.days-container .day.selected {
+  background-color: rgb(58 86 183);
 }
