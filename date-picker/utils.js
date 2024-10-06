@@ -31,4 +31,36 @@ function getPrefixMonth(month) {
   return month;
 }
 
-export { checkClassExists, checkIdExists, getPrefixDay, getPrefixMonth };
+const months = [
+  "January",
+  "February",
+  "March",
+  "April",
+  "May",
+  "June",
+  "July",
+  "August",
+  "September",
+  "October",
+  "November",
+  "December",
+];
+
+const days = [
+  "Sunday",
+  "Monday",
+  "Tuesday",
+  "Wednesday",
+  "Thursday",
+  "Friday",
+  "Saturday",
+];
+
+export {
+  checkClassExists,
+  checkIdExists,
+  getPrefixDay,
+  getPrefixMonth,
+  months,
+  days,
+};
