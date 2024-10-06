@@ -7,6 +7,64 @@
     <link rel="stylesheet" href="./styles.css" />
   </head>
   <body>
-    <h1>Custom Date Picker using pure JavaScript!</h1>
+    <h1 id="whats-the-day"></h1>
+
+    <div class="date-picker-wrapper">
+      <div class="selected-date">
+        <!-- Using a JS for accepting only numbers, because maxLength is ignored
+            on type="number" input fields by design.
+        -->
+
+        <!-- To prevent the cursor from moving to the start of the input field, we are 
+            using onfocus="this.value = this.value;". This ensures that the cursor stays
+            at the end of the input field when the user clicks on it.
+        -->
+
+        <input
+          type="text"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+          id="selected-day"
+          class="date-input"
+          onfocus="this.value = this.value;"
+          maxlength="2"
+        />
+
+        <span class="date-separator">/</span>
+        <input
+          type="text"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+          id="selected-month"
+          class="date-input"
+          onfocus="this.value = this.value;"
+          maxlength="2"
+        />
+        <span class="date-separator">/</span>
+        <input
+          type="text"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+          id="selected-year"
+          class="date-input"
+          onfocus="this.value = this.value;"
+          maxlength="4"
+        />
+      </div>
+
+      <div class="dates-container">
+        <div class="month">
+          <div class="arrows prev-month" title="Go to previous month">&lt;</div>
+          <div class="arrows prev-year" title="Jump to previous year">
+            &lt;&lt;
+          </div>
+          <!-- Added dynamically using JavaScript -->
+          <div class="month-item"></div>
+          <div class="arrows next-year" title="Jump to next year">&gt;&gt;</div>
+          <div class="arrows next-month" title="Go to next month">&gt;</div>
+        </div>
+
+        <div class="days-container"></div>
+      </div>
+    </div>
+
+    <script src="./script.js" type="module"></script>
   </body>
 </html>
