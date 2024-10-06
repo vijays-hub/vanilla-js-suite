@@ -8,6 +8,8 @@ import {
   prev_month_element,
   days_container,
   date_input_element,
+  jump_next_year_element,
+  jump_prev_year_element,
 } from "./constants.js";
 import { getPrefixDay, getPrefixMonth } from "./utils.js";
 
@@ -42,6 +44,8 @@ let selectedYear = year;
 
 next_month_element.addEventListener("click", goToNextMonth);
 prev_month_element.addEventListener("click", goToPrevMonth);
+jump_next_year_element.addEventListener("click", () => fastForward("next"));
+jump_prev_year_element.addEventListener("click", () => fastForward("prev"));
 
 function setSelectedDate() {
   selected_day_element.value = getPrefixDay(selectedDay);
@@ -50,6 +54,8 @@ function setSelectedDate() {
 }
 
 function setCurrentMonthAndYear() {
+  selectedMonth = month;
+  selectedYear = year;
   month_element.textContent = `${months[month]} ${year}`;
 }
 
@@ -148,7 +154,8 @@ function goToNextMonth() {
     year++;
   }
 
-  month_element.textContent = months[month] + " " + year;
+  setCurrentMonthAndYear();
+  setSelectedDate();
 
   // Generate the dates for the new month
   generateDates();
@@ -169,9 +176,23 @@ function goToPrevMonth() {
     year--;
   }
 
-  month_element.textContent = months[month] + " " + year;
+  setCurrentMonthAndYear();
+  setSelectedDate();
 
   // Generate the dates for the new month
+  generateDates();
+}
+
+function fastForward(type) {
+  console.log({ type });
+  if (type === "next") {
+    year++;
+  } else {
+    year--;
+  }
+
+  setCurrentMonthAndYear();
+  setSelectedDate();
   generateDates();
 }
 

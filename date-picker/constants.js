@@ -4,6 +4,8 @@ const dates_container = document.querySelector(".dates-container");
 const month_element = document.querySelector(".month .month-item");
 const next_month_element = document.querySelector(".month .next-month");
 const prev_month_element = document.querySelector(".month .prev-month");
+const jump_prev_year_element = document.querySelector(".month .prev-year");
+const jump_next_year_element = document.querySelector(".month .next-year");
 const days_container = document.querySelector(".days-container");
 
 const date_input_element = document.querySelector(".date-input");
@@ -23,5 +25,7 @@ export {
   month_element,
   next_month_element,
   prev_month_element,
+  jump_prev_year_element,
+  jump_next_year_element,
   days_container,
 };
