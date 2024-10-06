@@ -10,23 +10,9 @@ import {
   date_input_element,
   jump_next_year_element,
   jump_prev_year_element,
+  whats_the_day_element,
 } from "./constants.js";
-import { getPrefixDay, getPrefixMonth } from "./utils.js";
-
-const months = [
-  "January",
-  "February",
-  "March",
-  "April",
-  "May",
-  "June",
-  "July",
-  "August",
-  "September",
-  "October",
-  "November",
-  "December",
-];
+import { days, getPrefixDay, getPrefixMonth, months } from "./utils.js";
 
 const monthsWith31Days = [0, 2, 4, 6, 7, 9, 11];
 const monthsWith30Days = [3, 5, 8, 10];
@@ -51,6 +37,9 @@ function setSelectedDate() {
   selected_day_element.value = getPrefixDay(selectedDay);
   selected_month_element.value = getPrefixMonth(selectedMonth + 1);
   selected_year_element.value = selectedYear;
+
+  //   Display the User friendly date
+  showWhatsTheDay();
 }
 
 function setCurrentMonthAndYear() {
@@ -273,8 +262,16 @@ export function generateDates() {
       generateDates();
     });
 
+    showWhatsTheDay();
     days_container.appendChild(dayElement);
   }
+}
+
+function showWhatsTheDay() {
+  const selectedDate = new Date(selectedYear, selectedMonth, selectedDay);
+  whats_the_day_element.innerHTML = `It's ${days[selectedDate.getDay()]} ${selectedDay} ${
+    months[selectedMonth]
+  }, ${selectedYear}`;
 }
 
 // Set the selected date

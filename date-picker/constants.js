@@ -1,4 +1,5 @@
 // All the DOM elements
+const whats_the_day_element = document.getElementById("whats-the-day");
 const date_picker_wrapper = document.querySelector(".date-picker-wrapper");
 const dates_container = document.querySelector(".dates-container");
 const month_element = document.querySelector(".month .month-item");
@@ -15,6 +16,7 @@ const selected_month_element = document.getElementById("selected-month");
 const selected_year_element = document.getElementById("selected-year");
 
 export {
+  whats_the_day_element,
   date_picker_wrapper,
   date_input_element,
   selected_date_element,
