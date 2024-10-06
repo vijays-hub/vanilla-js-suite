@@ -53,6 +53,8 @@ function setCurrentMonthAndYear() {
   month_element.textContent = `${months[month]} ${year}`;
 }
 
+// TODO: Rethink the updating dates via input. I think there is scope for re-usability here. -- START
+
 // Function to set current date via input
 export function updateCurrentDayViaInput(inputDay) {
   /**
@@ -62,6 +64,7 @@ export function updateCurrentDayViaInput(inputDay) {
    *      1.1 - Add an invalid class to the input element if the day is invalid.
    * 2. If user has given a day less than 10, we need to add a prefix 0 to it.
    * 3. Once day is set, we can focus on the month input.
+   * 4. If the day is valid, we need to update the selected day and generate the dates.
    */
   const day = parseInt(inputDay);
 
@@ -77,6 +80,35 @@ export function updateCurrentDayViaInput(inputDay) {
 
   return getPrefixDay(day);
 }
+
+export function updateCurrentMonthViaInput(inputMonth) {
+  /**
+   * When updating the month via input, we need to check if the month is valid.
+   * Conditions:
+   * 1. The month should be between 1 and 12. Anything outside this range is invalid.
+   *      1.1 - Add an invalid class to the input element if the month is invalid.
+   * 2. If user has given a month less than 10, we need to add a prefix 0 to it.
+   * 3. Once month is set, we can focus on the year input.
+   * 4. If the month is valid, we need to update the selected month and generate the dates.
+   */
+  const userMonth = parseInt(inputMonth);
+
+  if (userMonth > 12 || userMonth < 1) {
+    selected_month_element.classList.add("invalid");
+    return;
+  }
+
+  selected_month_element.classList.remove("invalid");
+  month = userMonth - 1; // Since JS months are zero-based
+  selectedMonth = month;
+
+  generateDates();
+  setCurrentMonthAndYear(); // Update the month and year in the date picker UI.
+
+  return getPrefixMonth(userMonth);
+}
+
+// TODO: Rethink the updating dates via input. I think there is scope for re-usability here. -- START
 
 function goToNextMonth() {
   month++;
