@@ -1,4 +1,57 @@
 * {
   padding: 0;
   margin: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: "Arial", sans-serif;
+}
+
+h1 {
+  margin: 30px 0;
+  color: black;
+  font-size: 42px;
+  font-weight: 900;
+  text-align: center;
+}
+
+.date-picker-wrapper {
+  position: relative;
+  width: 100%;
+  max-width: 300px;
+  height: 60px;
+  background-color: rgb(58 86 183);
+  margin: 30px auto;
+  box-shadow: 0px 3px 10px rgba(0, 0, 0, 0.2);
+
+  cursor: pointer;
+  user-select: none;
+}
+
+.selected-date {
+  width: 100%;
+  height: 100%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  color: white;
+  font-size: 28px;
+}
+
+.dates-container {
+  visibility: hidden;
+  position: absolute;
+
+  top: 100%;
+  left: 0;
+  right: 0;
+
+  background-color: #fff;
+}
+
+.active {
+  visibility: visible;
 }
