@@ -1,10 +1,14 @@
 import {
   month_element,
   selected_date_element,
+  selected_day_element,
+  selected_month_element,
+  selected_year_element,
   next_month_element,
   prev_month_element,
   days_container,
 } from "./constants.js";
+import { getPrefixDay, getPrefixMonth } from "./utils.js";
 
 const months = [
   "January",
@@ -38,24 +42,10 @@ let selectedYear = year;
 next_month_element.addEventListener("click", goToNextMonth);
 prev_month_element.addEventListener("click", goToPrevMonth);
 
-function formatDate(date) {
-  let day = date.getDate();
-  let month = date.getMonth() + 1;
-  let year = date.getFullYear();
-
-  if (day < 10) {
-    day = `0${day}`;
-  }
-
-  if (month < 10) {
-    month = `0${month}`;
-  }
-
-  return `${day}/${month}/${year}`;
-}
-
 function setSelectedDate() {
-  selected_date_element.textContent = formatDate(selectedDate);
+  selected_day_element.value = getPrefixDay(selectedDay);
+  selected_month_element.value = getPrefixMonth(selectedMonth);
+  selected_year_element.value = selectedYear;
 }
 
 function setCurrentMonthAndYear() {

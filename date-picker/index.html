@@ -14,8 +14,36 @@
     </h1>
 
     <div class="date-picker-wrapper">
-      <!-- Added dynamically using JavaScript! -->
-      <div class="selected-date"></div>
+      <div class="selected-date">
+        <!-- Using a JS for accepting only numbers, because maxLength is ignored
+            on type="number" input fields by design.
+        -->
+
+        <input
+          type="text"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+          id="selected-day"
+          class="date-input"
+          maxlength="2"
+        />
+
+        <span class="date-separator">/</span>
+        <input
+          type="text"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+          id="selected-month"
+          class="date-input"
+          maxlength="2"
+        />
+        <span class="date-separator">/</span>
+        <input
+          type="text"
+          oninput="this.value = this.value.replace(/[^0-9]/g, '')"
+          id="selected-year"
+          class="date-input"
+          maxlength="4"
+        />
+      </div>
 
       <div class="dates-container">
         <div class="month">

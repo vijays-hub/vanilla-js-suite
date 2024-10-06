@@ -5,6 +5,8 @@ import { date_picker_wrapper, dates_container } from "./constants.js";
 import "./date-picker.js";
 import { generateDates } from "./date-picker.js";
 
+import "./dateInputActions.js";
+
 // Toggle the date picker on click of the date_picker_wrapper
 date_picker_wrapper.addEventListener("click", toggleDatePicker);
 
@@ -24,6 +26,17 @@ function toggleDatePicker(e) {
     // Try add if you want to always add the class
     dates_container.classList.toggle("active");
   }
+
+  /**
+   * UPDATE: Have introduced ability to edit the date via input as well. So when user
+   * focuses or changes the input, don't toggle the active class, rather, keep adding it
+   * so that the date-picker never closes.
+   * TODO: Optimize the algorithm here!
+   */
+
+  const inputClasses = ["selected-day", "selected-month", "selected-year"];
+  if (inputClasses.some((inputClass) => checkClassExists(path, inputClass)))
+    dates_container.classList.add("active");
 }
 
 generateDates();

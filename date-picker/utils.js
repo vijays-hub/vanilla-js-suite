@@ -13,4 +13,18 @@ function checkClassExists(elements, className) {
   );
 }
 
-export { checkClassExists };
+function getPrefixDay(day) {
+  if (day < 10) {
+    return `0${day}`;
+  }
+  return day;
+}
+
+function getPrefixMonth(month) {
+  if (month < 10) {
+    return `0${month}`;
+  }
+  return month;
+}
+
+export { checkClassExists, getPrefixDay, getPrefixMonth };
