@@ -113,7 +113,8 @@ h1 {
   This will also make sure that the spacing between each row is equal, irrespective of the
     number of weeks in a month. If this is not set, the height of each row would be 
     calculated based on the content inside it, which could lead to uneven spacing between rows.
-    Have a look at the UI in the app to understand this.
+    Have a look at the UI in the app to understand this. You can comment out this line and see
+    the difference in the UI.
 */
   grid-auto-rows: calc(var(--height) / var(--boxSize));
   background-color: rgb(54 49 56);
