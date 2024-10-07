@@ -1,0 +1,60 @@
+@import url("../globalStyles.css");
+
+html,
+body {
+  font-family: Virgil;
+  height: 100%;
+}
+
+body {
+  background-color: #fff;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.options {
+  padding: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.reset_button,
+input {
+  font-family: Virgil;
+  height: 30px;
+  padding: 0 20px;
+}
+
+.color_picker {
+  padding: 0 20px;
+  width: 100px;
+  margin: 0 40px;
+}
+
+.grid_container {
+  --grid_size: 8;
+
+  border: 1px solid;
+  border-radius: 8px;
+  background-color: white;
+  width: 80vw;
+  height: 80vh;
+
+  display: grid;
+
+  /* Fed dynamically from Javascript! */
+  grid-template-columns: repeat(var(--grid_size), 1fr);
+  grid-template-rows: repeat(var(--grid_size), 1fr);
+
+  gap: 1px;
+  padding: 3px;
+
+  .grid {
+    border-radius: 8px;
+    background-color: #333333;
+  }
+}
