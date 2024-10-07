@@ -1,6 +1,7 @@
 @import url("../globalStyles.css");
 
 body {
+  font-family: Virgil;
   width: 100%;
   height: 100vh;
   display: flex;
@@ -10,13 +11,16 @@ body {
 }
 
 .progress {
-  background-color: black;
+  background-color: whitesmoke;
+  border-radius: 8px;
   height: 30px;
   width: 400px;
   display: flex;
 }
 
 .progress-done {
+  color: wheat;
+  padding-right: 10px;
   display: flex;
   align-items: center;
   justify-content: flex-end;
@@ -26,22 +30,31 @@ body {
     #32cd32,
     #98ff98
   );
+  border-radius: 8px;
   height: 100%;
   /* 0 initially, and it increases gradually as and when progress changes */
   width: 0;
   transition: all ease 0.3s;
 }
 
-.progress-label {
-  display: flex;
-  align-items: center;
-
-  color: wheat;
-}
-
 .input-container {
-  margin: 20px 0;
+  margin: 30px 0;
   display: flex;
   width: 50%;
   justify-content: space-evenly;
+
+  input {
+    font-family: Virgil;
+  }
+}
+
+.simulate_progress {
+  cursor: pointer;
+  border: 0;
+  padding: 8px;
+  color: wheat;
+  background-image: repeating-linear-gradient(to left, #006400, #32cd32);
+  border-radius: 8px;
+  height: 40px;
+  font-family: Virgil;
 }
