@@ -58,3 +58,54 @@ input {
     background-color: #333333;
   }
 }
+
+.how-to {
+  position: relative;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .howto-label {
+    cursor: pointer;
+  }
+}
+
+/* Select the sibling and make it visible */
+.howto-label:hover + .helper-text {
+  display: block;
+}
+
+.helper-text {
+  display: none;
+  padding: 16px;
+  border-radius: 20px;
+
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+
+  background-color: #006400;
+  color: wheat;
+
+  ::before {
+    content: "";
+    position: absolute;
+    /* same as border-bottom in this case */
+    top: -8px;
+    left: 50%;
+    /* For perfect centering */
+    transform: translateX(-50%);
+
+    /* Triangle shape */
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #006400;
+  }
+}
+
+mark {
+  background-color: wheat;
+  color: black;
+}
