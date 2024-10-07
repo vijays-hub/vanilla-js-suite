@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Dynamic Progress bar</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div class="progress">
+      <div class="progress-done"></div>
+    </div>
+
+    <div class="input-container">
+      <div>
+        <h3>Value</h3>
+        <input type="number" id="input" value="0" />
+      </div>
+
+      <div>
+        <h3>Max Value</h3>
+        <input type="number" id="max-input" value="100" />
+      </div>
+    </div>
+
+    <button class="simulate_progress" onclick="simulateProgress()">
+      Simulate Progress
+    </button>
+
+    <script src="script.js"></script>
+  </body>
+</html>
