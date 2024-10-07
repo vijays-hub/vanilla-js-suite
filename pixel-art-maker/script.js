@@ -4,7 +4,7 @@
  * with some color (picked by him using a color picker). Once user stops hovering and clicks on
  * any grid, we stop painting the color on the grid. User can reset the board, pick any color of
  * his wish and also set the Grid size.
- * 
+ *
  * TODO: This is a very simple implementation. Add enhancements as needed.
  */
 
@@ -13,6 +13,7 @@ const reset_button = document.querySelector(".reset_button");
 const color_picker = document.querySelector(".color_picker");
 const grid_size_element = document.querySelector(".grid_size");
 const grid_container = document.querySelector(".grid_container");
+const current_selection_element = document.querySelector(".current-selection");
 
 // Pick the default value on load.
 let gridSize = grid_size_element.value;
@@ -27,6 +28,8 @@ function resetBoard() {
   //   Generate the board again for the selected size.
   generateGrid();
 }
+
+color_picker.addEventListener("change", updateCurrentSelection);
 
 // Trigger when user changes the values without enter
 grid_size_element.addEventListener("keyup", () => updateGridSize());
@@ -43,6 +46,9 @@ function updateGridSize() {
 function generateGrid() {
   // Update the CSS Variable value set in stylesheet
   grid_container.style.setProperty("--grid_size", gridSize);
+
+  //   Update current selection
+  updateCurrentSelection();
 
   /**
    * You are generating a square grid (matrix). So if the user enters 20 as the grid size,
@@ -70,6 +76,10 @@ function onMouseOver(grid) {
 
 function onMouseDown(grid) {
   grid.style.backgroundColor = color_picker.value;
+}
+
+function updateCurrentSelection() {
+  current_selection_element.innerHTML = `Painting on a ${gridSize}x${gridSize} Grid with ${color_picker.value} color!`;
 }
 
 /**
