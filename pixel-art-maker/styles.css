@@ -26,11 +26,9 @@ body {
 input {
   font-family: Virgil;
   height: 30px;
-  padding: 0 20px;
 }
 
 .color_picker {
-  padding: 0 20px;
   width: 100px;
   margin: 0 40px;
 }
@@ -42,7 +40,7 @@ input {
   border-radius: 8px;
   background-color: white;
   width: 80vw;
-  height: 80vh;
+  height: 70vh;
 
   display: grid;
 
@@ -55,6 +53,66 @@ input {
 
   .grid {
     border-radius: 8px;
-    background-color: #333333;
+    background-color: black;
   }
+}
+
+.reset_button {
+  padding: 0 20px;
+}
+
+.grid_size {
+  width: 50px;
+  padding-left: 10px;
+}
+
+.how-to {
+  position: relative;
+  width: 300px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+
+  .howto-label {
+    cursor: pointer;
+  }
+}
+
+/* Select the sibling and make it visible */
+.howto-label:hover + .helper-text {
+  display: block;
+}
+
+.helper-text {
+  display: none;
+  padding: 16px;
+  border-radius: 20px;
+
+  position: absolute;
+  top: 30px;
+  left: 0;
+  right: 0;
+
+  background-color: #006400;
+  color: wheat;
+
+  ::before {
+    content: "";
+    position: absolute;
+    /* same as border-bottom in this case */
+    top: -8px;
+    left: 50%;
+    /* For perfect centering */
+    transform: translateX(-50%);
+
+    /* Triangle shape */
+    border-left: 8px solid transparent;
+    border-right: 8px solid transparent;
+    border-bottom: 8px solid #006400;
+  }
+}
+
+mark {
+  background-color: wheat;
+  color: black;
 }
