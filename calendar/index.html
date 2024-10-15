@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Vanilla Calendar</title>
+    <link rel="stylesheet" href="styles.css" />
+  </head>
+  <body>
+    <div id="container">
+      <!-- Updated dynamically -->
+      <div id="header">
+        <div id="monthDisplay"></div>
+
+        <div>
+          <div>
+            <button id="backButton">Back</button>
+            <button id="nextButton">Next</button>
+          </div>
+        </div>
+      </div>
+
+      <div id="weekdays">
+        <div>Sunday</div>
+        <div>Monday</div>
+        <div>Tuesday</div>
+        <div>Wednesday</div>
+        <div>Thursday</div>
+        <div>Friday</div>
+        <div>Saturday</div>
+      </div>
+
+      <!-- Updated dynamically -->
+      <div id="calendar"></div>
+    </div>
+
+    <!-- Modals START -->
+
+    <div id="newEventModal">
+      <h2>New Event</h2>
+      <br />
+      <input type="text" id="eventTitleInput" placeholder="Event Title" />
+
+      <button id="saveButton">Save</button>
+      <button id="cancelButton">Cancel</button>
+    </div>
+
+    <div id="eventDetailsModal">
+      <h2>Event</h2>
+
+      <br />
+      <p id="eventText"></p>
+      <br />
+
+      <button id="deleteButton">Delete</button>
+      <button id="closeButton">Close</button>
+    </div>
+
+    <!-- Backdrop -->
+    <div id="modalBackDrop"></div>
+    <!-- Modals END -->
+
+    <script src="script.js" type="module"></script>
+  </body>
+</html>
