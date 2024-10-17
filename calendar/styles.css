@@ -3,9 +3,10 @@
 body {
   display: flex;
   margin-top: 50px;
-  justify-content: center;
+  justify-content: space-between;
   background-color: #fffcff;
   font-family: Virgil;
+  padding: 0 10px;
 }
 
 button {
@@ -51,6 +52,11 @@ input {
   width: 770px;
 }
 
+#day-view {
+  flex-grow: 1;
+  margin-left: 40px;
+}
+
 #weekdays {
   width: 100%;
   display: flex;
@@ -80,7 +86,6 @@ input {
   height: 100px;
   cursor: pointer;
   box-sizing: border-box;
-  background-color: white;
   margin: 5px;
   box-shadow: 0px 0px 3px #cbd4c2;
   display: flex;
@@ -99,10 +104,10 @@ input {
 .event {
   font-size: 10px;
   padding: 3px;
-  background-color: green;
-  color: white;
   border-radius: 5px;
-  max-height: 55px;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
   overflow: hidden;
   margin-top: 3px;
 }
@@ -139,7 +144,9 @@ input {
   box-shadow: 0px 0px 3px gray;
 }
 
-#eventTitleInput.error {
+#eventTitleInput.error,
+#eventStartInput.error,
+#eventEndInput.error {
   border: 2px solid red;
 }
 

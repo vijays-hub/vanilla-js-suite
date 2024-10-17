@@ -1,12 +1,14 @@
 import { calendar, months, week_days } from "./constants.js";
+import { renderDayView } from "./dayViewScript.js";
 import {
   closeModal,
   deleteEvent,
   events,
-  expandEventDetails,
   getFirstDayOfMonthDateString,
-  openModal,
+  generateDayString,
+  openEventCreateModal,
   saveEvent,
+  setViewingDate,
 } from "./utils.js";
 
 let navMonth = 0; // Stores the current month being displayed.
@@ -78,13 +80,20 @@ export function load() {
       // Render current month's day
       daySquare.innerText = index - paddingDays; // Ex: 6 - 5 => 1. index will always be greater here, since we have padded already.
 
+      const dayString = `${month + 1}/${index - paddingDays}/${year}`;
+
       // Highlight current day on the Calendar. We want to highlight only current month's day, so check for navMonth
-      if (index - paddingDays === day && navMonth === 0)
+      if (index - paddingDays === day && navMonth === 0) {
         daySquare.id = "currentDay";
 
-      const dayString = `${month + 1}/${index - paddingDays}/${year}`;
+        // store the current day! Handy for creating events for the day
+        setViewingDate(dayString);
+      }
+
       daySquare.addEventListener("click", () => {
-        openModal(dayString);
+        // store the current clicked day! Handy for creating events for the day
+        setViewingDate(dayString);
+        renderDayView(dayString);
       });
 
       /**
@@ -103,15 +112,7 @@ export function load() {
           const eventDiv = document.createElement("div");
           eventDiv.classList.add("event");
 
-          eventDiv.innerText = event.title;
-
-          eventDiv.addEventListener("click", (e) => {
-            e.stopPropagation();
-            e.preventDefault();
-
-            // Expand the event details.
-            expandEventDetails(event.id);
-          });
+          eventDiv.style.backgroundColor = event.eventColor;
 
           eventsDiv.appendChild(eventDiv);
         });
@@ -149,7 +150,13 @@ export function initActions() {
     .getElementById("deleteButton")
     .addEventListener("click", deleteEvent);
   document.getElementById("closeButton").addEventListener("click", closeModal);
+  document
+    .getElementById("new_event_button")
+    .addEventListener("click", openEventCreateModal);
 }
 
 initActions();
 load();
+
+// Render today's day view by default
+renderDayView(generateDayString());

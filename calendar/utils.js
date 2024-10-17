@@ -1,5 +1,8 @@
 import {
+  eventColors,
   eventDetailsModalElement,
+  eventEndInputElement,
+  eventStartInputElement,
   eventTitleInputElement,
   modalBackDropElement,
   newEventModalElement,
@@ -7,6 +10,22 @@ import {
 import { load } from "./script.js";
 
 // User events. Persistent.
+
+/**
+ * - DS for our events:
+ *    events = [
+        {
+          id: "id",
+          date: "10/16/2024",
+          title: "Meeting",
+          startTime: "16:40",
+          endTime: "17:20",
+          eventColor: "random_color_hex"
+        },
+        ...
+      ];
+ */
+
 export let events = localStorage.getItem("events")
   ? JSON.parse(localStorage.getItem("events"))
   : [];
@@ -35,14 +54,16 @@ export const getFirstDayOfMonthDateString = ({ year, month }) => {
   return dateString;
 };
 
-export function openModal(date) {
-  // Set the clicked state to date being passed. Essential for our actions like Save Event!
-  clicked = date;
-
+export function openEventCreateModal() {
   // TODO: Don't allow events for past dates
 
   // Display new event form
   newEventModalElement.style.display = "block";
+
+  // Display the selected date for the event!
+  document.getElementById("event_date_displayer").innerText = generateDayString(
+    getViewingDate()
+  );
 
   //   Show the backdrop
   modalBackDropElement.style.display = "block";
@@ -60,25 +81,30 @@ export function generateUUID() {
 
 export function saveEvent() {
   const title = eventTitleInputElement.value;
+  const startTime = eventStartInputElement.value;
+  const endTime = eventEndInputElement.value;
 
-  if (title) {
-    eventTitleInputElement.classList.remove("error");
+  // TODO: Try disabling Save button when fields are empty.
+  if (!title) return eventTitleInputElement.classList.add("error");
+  else eventTitleInputElement.classList.remove("error");
+  if (!startTime) return eventStartInputElement.classList.add("error");
+  else eventStartInputElement.classList.remove("error");
+  if (!endTime) return eventEndInputElement.classList.add("error");
+  else eventEndInputElement.classList.remove("error");
 
-    events.push({
-      id: generateUUID(),
-      date: clicked,
-      title,
-    });
+  events.push({
+    id: generateUUID(),
+    date: getViewingDate(),
+    startTime,
+    endTime,
+    eventColor: getRandomColor(),
+    title,
+  });
 
-    // Set the events in LocalStorage
-    localStorage.setItem("events", JSON.stringify(events));
+  // Set the events in LocalStorage
+  localStorage.setItem("events", JSON.stringify(events));
 
-    closeModal();
-  } else {
-    // Need the title to save the Event.
-    // TODO: Try disabling Save button when this is empty.
-    eventTitleInputElement.classList.add("error");
-  }
+  closeModal();
 }
 
 export const expandEventDetails = (eventId) => {
@@ -121,6 +147,8 @@ export function closeModal() {
 
   //   Clear the input
   eventTitleInputElement.value = "";
+  eventStartInputElement.value = "";
+  eventEndInputElement.value = "";
   eventTitleInputElement.classList.remove("error");
 
   // Clear the selected day
@@ -128,4 +156,19 @@ export function closeModal() {
 
   //   Reload the calendar
   load();
+}
+
+export const setViewingDate = (dateString) =>
+  sessionStorage.setItem("viewingDate", dateString);
+export const getViewingDate = () => sessionStorage.getItem("viewingDate");
+
+// Returns a date string of the format "10/16/2024". This is essential for querying events for the day!
+export function generateDayString(date = null) {
+  const dt = date ? new Date(date) : new Date();
+
+  return `${dt.getMonth() + 1}/${dt.getDate()}/${dt.getFullYear()}`;
+}
+
+export function getRandomColor() {
+  return eventColors[Math.floor(Math.random() * eventColors.length)];
 }

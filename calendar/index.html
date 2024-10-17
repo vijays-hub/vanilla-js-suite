@@ -5,6 +5,7 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Vanilla Calendar</title>
     <link rel="stylesheet" href="styles.css" />
+    <link rel="stylesheet" href="day-view-styles.css" />
   </head>
   <body>
     <div id="container">
@@ -34,12 +35,60 @@
       <div id="calendar"></div>
     </div>
 
+    <div id="day-view">
+      <main>
+        TODO:
+        <ul style="list-style-type: lower-alpha">
+          <li>
+            <strike
+              >Fix for cases where event starts tonight and spans till tomorrow.
+              Example: 22.50 to 01.30 or something like that!</strike
+            >
+            Won't be a case since we are not allowing selection of multiple days
+            currently. User can only schedule for the day he clicked on!
+          </li>
+          <li>Overlapping events</li>
+          <li>Checkout the Excalidraw design for more pending features!</li>
+          <li>
+            Fix - Current Time indicator should move as soon as time changes in
+            the system!
+          </li>
+          <li>
+            Add background for the clicked date and reset once clicked on
+            another one!
+          </li>
+          <li>
+            Add date input for event create, so that user can create event for
+            any day as well - prefill date for current day.
+          </li>
+        </ul>
+      </main>
+
+      <br />
+      <div id="events_count"></div>
+      <br />
+
+      <div id="day-view-container"></div>
+    </div>
+
     <!-- Modals START -->
 
     <div id="newEventModal">
-      <h2>New Event</h2>
+      <h4>New Event for <span id="event_date_displayer"></span></h4>
       <br />
       <input type="text" id="eventTitleInput" placeholder="Event Title" />
+
+      <div>
+        <label for="eventStartInput">Start Time</label>
+        <input type="time" id="eventStartInput" />
+      </div>
+      <br />
+
+      <div>
+        <label for="eventInput">End Time</label>
+        <input type="time" id="eventEndInput" />
+      </div>
+      <br />
 
       <button id="saveButton">Save</button>
       <button id="cancelButton">Cancel</button>
@@ -60,6 +109,11 @@
     <div id="modalBackDrop"></div>
     <!-- Modals END -->
 
+    <div id="new_event_button">
+      <h1>+</h1>
+    </div>
+
     <script src="script.js" type="module"></script>
+    <script src="./dayViewScript.js" type="module"></script>
   </body>
 </html>
