@@ -32,3 +32,101 @@
 #new_event_button:hover {
   opacity: 0.8;
 }
+
+.home_wrapper {
+  font-family: "Virgil";
+  height: 100vh;
+  max-width: 1000px;
+  margin: 0 auto;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+}
+
+.explainer_note {
+  background-color: rgb(43 110 98 / 0.8);
+  padding: 32px;
+  color: #f6f7f9;
+  border-radius: 1rem;
+}
+
+.note_header {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  max-width: max-content;
+  margin-bottom: 1rem;
+  color: rgb(68 172 153);
+}
+
+/* Main wrapper styling */
+.app_list_wrapper {
+  min-width: 100%;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+/* Card styling */
+.app_list_card {
+  background-color: #ffffff;
+  border-radius: 16px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  width: 220px;
+  padding: 24px;
+  text-align: center;
+  transition: transform 0.2s, box-shadow 0.2s;
+}
+
+/* Title styling */
+.app_list_card h3 {
+  font-size: 1.25em;
+  color: #1f2937; /* Dark gray for text */
+  margin-bottom: 12px;
+}
+
+/* Subtitle styling */
+.app_list_card p {
+  color: #6b7280; /* Medium gray for subtitle */
+  font-size: 1em;
+  margin-bottom: 20px;
+}
+
+/* Button styling */
+.app_list_card a {
+  display: inline-block;
+  font-size: 1em;
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 8px;
+  font-weight: bold;
+}
+
+/* Custom button colors for each card */
+.app_list_card:nth-child(1) a {
+  background-color: #8b5cf6; /* Violet for the first card */
+}
+
+.app_list_card:nth-child(2) a {
+  background-color: #22c55e; /* Green for the second card */
+}
+
+.app_list_card:nth-child(3) a {
+  background-color: #3b82f6; /* Blue for the third card */
+}
+
+.app_list_card:nth-child(4) a {
+  background-color: #d6bcfa; /* Blue for the third card */
+}
+
+/* #FFD6A5 */
+/* #A0E7E5 */
+
+/* Hover effect for cards */
+.app_list_card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
+}
