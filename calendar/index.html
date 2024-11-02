@@ -8,112 +8,138 @@
     <link rel="stylesheet" href="day-view-styles.css" />
   </head>
   <body>
-    <div id="container">
-      <!-- Updated dynamically -->
-      <div id="header">
-        <div id="monthDisplay"></div>
+    <div style="margin: 2rem 1rem">
+      <a href="/" class="navigable-button">
+        <span class="home_icon">
+          <svg
+            xmlns="http://www.w3.org/2000/svg"
+            width="16"
+            height="16"
+            viewBox="0 0 24 24"
+            fill="none"
+            stroke="currentColor"
+            stroke-width="2"
+            stroke-linecap="round"
+            stroke-linejoin="round"
+            class="feather feather-arrow-left"
+          >
+            <line x1="19" y1="12" x2="5" y2="12"></line>
+            <polyline points="12 19 5 12 12 5"></polyline>
+          </svg>
+        </span>
+        <span>Go Home</span>
+      </a>
+    </div>
 
-        <div>
+    <div class="main_wrapper">
+      <div id="container">
+        <!-- Updated dynamically -->
+        <div id="header">
+          <div id="monthDisplay"></div>
+
           <div>
-            <button id="backButton">Back</button>
-            <button id="nextButton">Next</button>
+            <div>
+              <button id="backButton">Back</button>
+              <button id="nextButton">Next</button>
+            </div>
           </div>
         </div>
+
+        <div id="weekdays">
+          <div>Sunday</div>
+          <div>Monday</div>
+          <div>Tuesday</div>
+          <div>Wednesday</div>
+          <div>Thursday</div>
+          <div>Friday</div>
+          <div>Saturday</div>
+        </div>
+
+        <!-- Updated dynamically -->
+        <div id="calendar"></div>
       </div>
 
-      <div id="weekdays">
-        <div>Sunday</div>
-        <div>Monday</div>
-        <div>Tuesday</div>
-        <div>Wednesday</div>
-        <div>Thursday</div>
-        <div>Friday</div>
-        <div>Saturday</div>
+      <div id="day-view">
+        <main>
+          TODO:
+          <ul style="list-style-type: lower-alpha">
+            <li>
+              <strike
+                >Fix for cases where event starts tonight and spans till
+                tomorrow. Example: 22.50 to 01.30 or something like
+                that!</strike
+              >
+              Won't be a case since we are not allowing selection of multiple
+              days currently. User can only schedule for the day he clicked on!
+            </li>
+            <li>Overlapping events</li>
+            <li>Checkout the Excalidraw design for more pending features!</li>
+            <li>
+              Fix - Current Time indicator should move as soon as time changes
+              in the system!
+            </li>
+            <li>
+              Add background for the clicked date and reset once clicked on
+              another one!
+            </li>
+            <li>
+              Add date input for event create, so that user can create event for
+              any day as well - prefill date for current day.
+            </li>
+          </ul>
+        </main>
+
+        <br />
+        <div id="events_count"></div>
+        <br />
+
+        <div id="day-view-container"></div>
       </div>
 
-      <!-- Updated dynamically -->
-      <div id="calendar"></div>
-    </div>
+      <!-- Modals START -->
 
-    <div id="day-view">
-      <main>
-        TODO:
-        <ul style="list-style-type: lower-alpha">
-          <li>
-            <strike
-              >Fix for cases where event starts tonight and spans till tomorrow.
-              Example: 22.50 to 01.30 or something like that!</strike
-            >
-            Won't be a case since we are not allowing selection of multiple days
-            currently. User can only schedule for the day he clicked on!
-          </li>
-          <li>Overlapping events</li>
-          <li>Checkout the Excalidraw design for more pending features!</li>
-          <li>
-            Fix - Current Time indicator should move as soon as time changes in
-            the system!
-          </li>
-          <li>
-            Add background for the clicked date and reset once clicked on
-            another one!
-          </li>
-          <li>
-            Add date input for event create, so that user can create event for
-            any day as well - prefill date for current day.
-          </li>
-        </ul>
-      </main>
+      <div id="newEventModal">
+        <h4>New Event for <span id="event_date_displayer"></span></h4>
+        <br />
+        <input type="text" id="eventTitleInput" placeholder="Event Title" />
 
-      <br />
-      <div id="events_count"></div>
-      <br />
+        <div>
+          <label for="eventStartInput">Start Time</label>
+          <input type="time" id="eventStartInput" />
+        </div>
+        <br />
 
-      <div id="day-view-container"></div>
-    </div>
+        <div>
+          <label for="eventInput">End Time</label>
+          <input type="time" id="eventEndInput" />
+        </div>
+        <br />
 
-    <!-- Modals START -->
-
-    <div id="newEventModal">
-      <h4>New Event for <span id="event_date_displayer"></span></h4>
-      <br />
-      <input type="text" id="eventTitleInput" placeholder="Event Title" />
-
-      <div>
-        <label for="eventStartInput">Start Time</label>
-        <input type="time" id="eventStartInput" />
+        <button id="saveButton">Save</button>
+        <button id="cancelButton">Cancel</button>
       </div>
-      <br />
 
-      <div>
-        <label for="eventInput">End Time</label>
-        <input type="time" id="eventEndInput" />
+      <div id="eventDetailsModal">
+        <h2>Event</h2>
+
+        <br />
+        <p id="eventText"></p>
+        <br />
+
+        <button id="deleteButton">Delete</button>
+        <button id="closeButton">Close</button>
       </div>
-      <br />
 
-      <button id="saveButton">Save</button>
-      <button id="cancelButton">Cancel</button>
+      <!-- Backdrop -->
+      <div id="modalBackDrop"></div>
+      <!-- Modals END -->
+
+      <div id="new_event_button">
+        <h1>+</h1>
+      </div>
+
+      <script src="script.js" type="module"></script>
+      <script src="./dayViewScript.js" type="module"></script>
     </div>
-
-    <div id="eventDetailsModal">
-      <h2>Event</h2>
-
-      <br />
-      <p id="eventText"></p>
-      <br />
-
-      <button id="deleteButton">Delete</button>
-      <button id="closeButton">Close</button>
-    </div>
-
-    <!-- Backdrop -->
-    <div id="modalBackDrop"></div>
-    <!-- Modals END -->
-
-    <div id="new_event_button">
-      <h1>+</h1>
-    </div>
-
-    <script src="script.js" type="module"></script>
-    <script src="./dayViewScript.js" type="module"></script>
   </body>
 </html>

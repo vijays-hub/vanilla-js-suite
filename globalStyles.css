@@ -130,3 +130,33 @@
   transform: translateY(-5px);
   box-shadow: 0 8px 16px rgba(0, 0, 0, 0.1);
 }
+
+.navigable-button {
+  border: 1px solid rgb(68 172 153);
+  padding: 0.5rem;
+  width: 140px;
+  height: 40px;
+  border-radius: 2rem;
+  text-decoration: none;
+  color: rgb(68 172 153);
+  transition: background-color 0.3s, color 0.3s, display 0.3s;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 5px;
+}
+
+.home_icon {
+  display: none;
+  margin-top: 5px;
+}
+
+.navigable-button:hover {
+  background-color: rgb(68 172 153);
+  color: white;
+}
+
+.navigable-button:hover .home_icon {
+  display: inline;
+}

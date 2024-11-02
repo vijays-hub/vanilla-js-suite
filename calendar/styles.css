@@ -1,6 +1,6 @@
 @import url("../globalStyles.css");
 
-body {
+.main_wrapper {
   display: flex;
   margin-top: 50px;
   justify-content: space-between;
