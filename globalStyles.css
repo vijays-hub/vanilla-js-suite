@@ -42,9 +42,8 @@
 
 .home_wrapper {
   font-family: "Virgil";
-  height: 100vh;
   margin: 0 auto;
-  padding: 0 10rem;
+  padding: 5rem 10rem;
   background-color: rgb(35 39 47);
 
   display: flex;
