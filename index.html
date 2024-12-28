@@ -68,18 +68,60 @@
 
       <div class="app_list_wrapper">
         <div class="app_list_card">
-          <a href="calendar/">Calendar</a>
+          <a href="calendar/" id="nav_button">Calendar</a>
         </div>
         <div class="app_list_card">
-          <a href="date-picker/">Date-picker</a>
+          <a href="date-picker/" id="nav_button">Date-picker</a>
         </div>
         <div class="app_list_card">
-          <a href="dynamic-progress-bar/">Progress Bar</a>
+          <a href="dynamic-progress-bar/" id="nav_button">Progress Bar</a>
         </div>
         <div class="app_list_card">
-          <a href="pixel-art-maker/">Pixel Art Maker</a>
+          <a href="pixel-art-maker/" id="nav_button">Pixel Art Maker</a>
+        </div>
+        <div class="app_list_card">
+          <a href="default-color-by-order/" id="nav_button"
+            >Default Color Reset</a
+          >
         </div>
       </div>
     </div>
+
+    <script>
+      const NAV_BACKGROUND_COLOR_SET = [
+        "#8b5cf6",
+        "#22c55e",
+        "#3b82f6",
+        "#f87171",
+        "#f59e0b",
+        "#d6bcfa",
+        "#fbcfe8",
+        "#fcd34d",
+        "#FFD6A5",
+        "#A0E7E5",
+      ];
+
+      function generateAppListCardBackground() {
+        const appListCards = document.querySelectorAll(".app_list_card");
+
+        appListCards.forEach((card) => {
+          const navButton = card.querySelector("#nav_button");
+          navButton.style.backgroundColor =
+            NAV_BACKGROUND_COLOR_SET[
+              /**
+               * This line of code generates a random index to select a background color
+               * from the NAV_BACKGROUND_COLOR_SET array. Math.random() generates a
+               * random decimal number between 0 (inclusive) and 1 (exclusive), which is
+               * then multiplied by the length of the NAV_BACKGROUND_COLOR_SET array.
+               * Math.floor() is used to round down the result to the nearest whole number,
+               * ensuring the index is within the valid range of the array.
+               */
+              Math.floor(Math.random() * NAV_BACKGROUND_COLOR_SET.length)
+            ];
+        });
+      }
+
+      generateAppListCardBackground();
+    </script>
   </body>
 </html>

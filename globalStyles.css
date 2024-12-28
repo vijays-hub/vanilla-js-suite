@@ -85,6 +85,7 @@
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
+  gap: 16px;
 }
 
 /* Card styling */
@@ -108,26 +109,6 @@
   border-radius: 8px;
   font-weight: bold;
 }
-
-/* Custom button colors for each card */
-.app_list_card:nth-child(1) a {
-  background-color: #8b5cf6; /* Violet for the first card */
-}
-
-.app_list_card:nth-child(2) a {
-  background-color: #22c55e; /* Green for the second card */
-}
-
-.app_list_card:nth-child(3) a {
-  background-color: #3b82f6; /* Blue for the third card */
-}
-
-.app_list_card:nth-child(4) a {
-  background-color: #d6bcfa; /* Blue for the third card */
-}
-
-/* #FFD6A5 */
-/* #A0E7E5 */
 
 /* Hover effect for cards */
 .app_list_card:hover {
