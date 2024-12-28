@@ -1,25 +1,16 @@
+import generateWinningCombinations from "./generateWinningCombinations.js";
+
 const boardContainer = document.getElementById("container");
 const gameResult = document.getElementById("game-result");
 const restartButton = document.getElementById("restart");
 
-let boxes;
 let turnX = true;
 let GRID_SIZE = 3; // Default grid size
 
 // This helps us to style the winning combination.
 let correctCombination = null;
 
-// TODO: If the board has to be dynamic, we might need to follow a different approach!
-const WINNING_COMBINATIONS = [
-  [0, 1, 2], // Horizontal
-  [3, 4, 5], // Horizontal
-  [6, 7, 8], // Horizontal
-  [0, 3, 6], // Vertical
-  [1, 4, 7], // Vertical
-  [2, 5, 8], // Vertical
-  [0, 4, 8], // Diagonal
-  [2, 4, 6], // Diagonal
-];
+let WINNING_COMBINATIONS = generateWinningCombinations(GRID_SIZE);
 
 function isGameDraw() {
   /**
@@ -163,12 +154,16 @@ function startGame(type) {
   generateBoard();
 }
 
-function setGridSize(size) {
+function init() {
+  const size = prompt("Enter the grid size (e.g., 3 for 3x3 grid):");
+
   // Update CSS variable for styling
   const container = document.querySelector(".container");
-  container.style.setProperty("--grid-size", size);
+  container.style.setProperty("--grid-size", +size);
 
   GRID_SIZE = size;
+
+  WINNING_COMBINATIONS = generateWinningCombinations(GRID_SIZE);
 
   // Restart the game with the new grid size
   startGame("restart");
@@ -177,4 +172,4 @@ function setGridSize(size) {
 restartButton.addEventListener("click", () => startGame("restart"));
 
 // TODO: Get the grid size from the user and set the grid size.
-setGridSize(4);
+init(4);
