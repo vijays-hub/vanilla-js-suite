@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Default Color By Order</title>
+
+    <style>
+      body {
+        height: 100vh;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        overflow: hidden;
+      }
+
+      .layout {
+        display: grid;
+        grid-template-columns: repeat(3, minmax(100px, 1fr));
+        gap: 8px;
+        /* Each box is 100px wide, let's add some more width for spacing of 8px */
+        max-width: 320px;
+      }
+
+      .cell {
+        border: 1px solid;
+        width: 100px;
+        height: 100px;
+        transition: background-color 0.5s; /* Add transition effect while resetting the colors to default */
+      }
+
+      .active {
+        background-color: red;
+      }
+    </style>
+  </head>
+  <body>
+    <div class="layout">
+      <!-- Boxes added dynamically! -->
+    </div>
+
+    <script src="./script.js"></script>
+  </body>
+</html>
