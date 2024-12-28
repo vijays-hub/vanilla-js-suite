@@ -1,6 +1,80 @@
+@import url("../globalStyles.css");
+
 body {
+  overflow: hidden;
+  font-family: Virgil;
+}
+
+.wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  margin: 50px 0px;
+  display: grid;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(3, auto);
+}
+
+.box {
+  width: 100px;
+  height: 100px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  font-size: 2rem;
+  font-weight: bold;
+  border: 1px solid black;
+}
+
+/* The following styles are based on the assumption that the board is 3*3.
+  TODO: Find a cleaner way to do this. 
+*/
+
+.box:first-child,
+.box:nth-child(2),
+.box:nth-child(3) {
+  border-top: none;
+}
+
+.box:nth-child(3n + 1) {
+  border-left: none;
+}
+
+.box:nth-child(3n) {
+  border-right: none;
+}
+
+.box:last-child,
+.box:nth-child(7),
+.box:nth-child(8) {
+  border-bottom: none;
+}
+
+.game-result-styles {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.restart-style {
+  visibility: hidden;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  border: 2px solid;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.show {
+  visibility: visible;
 }
