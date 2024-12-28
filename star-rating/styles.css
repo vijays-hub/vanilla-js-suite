@@ -14,7 +14,8 @@
 .star-style {
   height: 64px;
   width: 64px;
-  padding-right: 2px;
+  padding-right: 8px;
+  object-fit: contain;
 }
 
 .star-value {
