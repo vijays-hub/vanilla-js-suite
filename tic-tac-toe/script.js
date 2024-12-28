@@ -157,6 +157,11 @@ function startGame(type) {
 function init() {
   const size = prompt("Enter the grid size (e.g., 3 for 3x3 grid):");
 
+  if (!size || isNaN(size) || size < 3) {
+    alert("Please enter a valid grid size (e.g., 3 for 3x3 grid).");
+    return;
+  }
+
   // Update CSS variable for styling
   const container = document.querySelector(".container");
   container.style.setProperty("--grid-size", +size);
