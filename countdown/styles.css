@@ -1,0 +1,49 @@
+@import url("../globalStyles.css");
+
+body {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+  overflow: hidden;
+  background-color: #f0f0f0;
+  font-family: Virgil;
+}
+
+#timer {
+  visibility: hidden;
+  display: flex;
+  gap: 1rem;
+}
+
+.timer-section {
+  text-align: center;
+  position: relative;
+}
+
+.card {
+  position: relative;
+  width: 120px;
+  min-width: 100px;
+  height: 120px;
+  background-color: wheat;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  font-size: 60px;
+  border-radius: 0.5rem;
+
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+label {
+  position: absolute;
+  bottom: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 16px;
+  color: #ffa500;
+  text-transform: uppercase;
+  font-weight: bold;
+}
