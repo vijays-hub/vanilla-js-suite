@@ -78,3 +78,7 @@ body {
 .show {
   visibility: visible;
 }
+
+.winning-box {
+  background-color: #f0f;
+}
