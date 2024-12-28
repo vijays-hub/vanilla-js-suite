@@ -1,6 +1,81 @@
+@import url("../globalStyles.css");
+
 body {
+  overflow: hidden;
+  font-family: Virgil;
+}
+
+.wrapper {
   display: flex;
   flex-direction: column;
   justify-content: center;
   align-items: center;
+  overflow: hidden;
+  width: 100vw;
+  height: 100vh;
+}
+
+.container {
+  --grid-size: 3;
+  /* sets --cell-size to the smaller of two values using the min() function. 
+    This ensures:
+      Responsiveness: The cell size adjusts with the viewport width (80vw) and the grid size (--grid-size).
+      Constraint: The cells won’t exceed 100px in size, maintaining a consistent look and usability.
+  */
+  --cell-size: min(100px, calc(80vw / var(--grid-size)));
+  margin: 50px 0px;
+  display: grid;
+  height: fit-content;
+  justify-content: center;
+  align-items: center;
+  grid-template-columns: repeat(var(--grid-size), var(--cell-size));
+}
+
+.box {
+  width: var(--cell-size);
+  height: var(--cell-size);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  cursor: pointer;
+  /*
+    This calculation adjusts the font size dynamically based on --grid-size. It ensures:
+
+      Scalability: Font size increases when there are fewer grid items (--grid-size is smaller) and decreases when there are more grid items.
+      Responsiveness: The design remains visually balanced regardless of the grid configuration.
+
+    Example:
+      For a 3x3 grid, the font size is 2rem.
+      For a 4x4 grid, the font size is 1.5rem.
+      For a 5x5 grid, the font size is 1.2rem.  
+  */
+  font-size: calc(2rem * 3 / var(--grid-size));
+  font-weight: bold;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  margin: 0;
+  padding: 0;
+}
+
+.game-result-styles {
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.restart-style {
+  visibility: hidden;
+  font-size: 2rem;
+  font-weight: bold;
+  padding: 0.5rem;
+  border: 2px solid;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+.show {
+  visibility: visible;
+}
+
+.winning-box {
+  background-color: #f0f;
 }
