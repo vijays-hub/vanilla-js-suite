@@ -16,48 +16,45 @@ body {
 }
 
 .container {
+  --grid-size: 3;
+  /* sets --cell-size to the smaller of two values using the min() function. 
+    This ensures:
+      Responsiveness: The cell size adjusts with the viewport width (80vw) and the grid size (--grid-size).
+      Constraint: The cells won’t exceed 100px in size, maintaining a consistent look and usability.
+  */
+  --cell-size: min(100px, calc(80vw / var(--grid-size)));
   margin: 50px 0px;
   display: grid;
   height: fit-content;
   justify-content: center;
   align-items: center;
-  grid-template-columns: repeat(3, auto);
+  grid-template-columns: repeat(var(--grid-size), var(--cell-size));
 }
 
 .box {
-  width: 100px;
-  height: 100px;
+  width: var(--cell-size);
+  height: var(--cell-size);
   display: flex;
   justify-content: center;
   align-items: center;
   cursor: pointer;
-  font-size: 2rem;
+  /*
+    This calculation adjusts the font size dynamically based on --grid-size. It ensures:
+
+      Scalability: Font size increases when there are fewer grid items (--grid-size is smaller) and decreases when there are more grid items.
+      Responsiveness: The design remains visually balanced regardless of the grid configuration.
+
+    Example:
+      For a 3x3 grid, the font size is 2rem.
+      For a 4x4 grid, the font size is 1.5rem.
+      For a 5x5 grid, the font size is 1.2rem.  
+  */
+  font-size: calc(2rem * 3 / var(--grid-size));
   font-weight: bold;
-  border: 1px solid black;
-}
-
-/* The following styles are based on the assumption that the board is 3*3.
-  TODO: Find a cleaner way to do this. 
-*/
-
-.box:first-child,
-.box:nth-child(2),
-.box:nth-child(3) {
-  border-top: none;
-}
-
-.box:nth-child(3n + 1) {
-  border-left: none;
-}
-
-.box:nth-child(3n) {
-  border-right: none;
-}
-
-.box:last-child,
-.box:nth-child(7),
-.box:nth-child(8) {
-  border-bottom: none;
+  border-right: 1px solid black;
+  border-bottom: 1px solid black;
+  margin: 0;
+  padding: 0;
 }
 
 .game-result-styles {

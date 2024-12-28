@@ -4,6 +4,7 @@ const restartButton = document.getElementById("restart");
 
 let boxes;
 let turnX = true;
+let GRID_SIZE = 3; // Default grid size
 
 // This helps us to style the winning combination.
 let correctCombination = null;
@@ -122,9 +123,34 @@ function clearBoard() {
 }
 
 function generateBoard() {
-  for (let i = 0; i < 9; i++) {
+  for (let i = 0; i < GRID_SIZE * GRID_SIZE; i++) {
     const box = document.createElement("div");
     box.classList.add("box");
+
+    /**
+     * Check if box is in last column (e.g., for 3x3 grid: index 2, 5, 8)
+     * Example: 3x3 grid
+     * Index 7:
+     *  (7 + 1) % 3 -> 8 % 3 -> 2 (False)
+     * Index 8:
+     * (8 + 1) % 3 -> 9 % 3 -> 0 (True) -> Last Column -> So remove the right border
+     */
+    if ((i + 1) % GRID_SIZE === 0) {
+      box.style.borderRight = "none";
+    }
+
+    /**
+     * Check if box is in last row (e.g., for 3x3 grid: index 6, 7, 8)
+     * Example: 3x3 grid
+     * Index 7:
+     * 5 >= 3 * (3 - 1) -> 5 >= 6 (False)
+     * Index 6:
+     * 6 >= 3 * (3 - 1) -> 6 >= 6 (True) -> Last Row -> So remove the bottom border
+     */
+    if (i >= GRID_SIZE * (GRID_SIZE - 1)) {
+      box.style.borderBottom = "none";
+    }
+
     boardContainer.appendChild(box);
 
     // Add click event listener. Accept only one click
@@ -137,6 +163,18 @@ function startGame(type) {
   generateBoard();
 }
 
+function setGridSize(size) {
+  // Update CSS variable for styling
+  const container = document.querySelector(".container");
+  container.style.setProperty("--grid-size", size);
+
+  GRID_SIZE = size;
+
+  // Restart the game with the new grid size
+  startGame("restart");
+}
+
 restartButton.addEventListener("click", () => startGame("restart"));
 
-startGame();
+// TODO: Get the grid size from the user and set the grid size.
+setGridSize(4);
