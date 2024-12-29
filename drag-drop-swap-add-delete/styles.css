@@ -1,0 +1,99 @@
+@import url("../globalStyles.css");
+
+body {
+  background-color: #000;
+  overflow: hidden;
+  font-family: Virgil;
+}
+
+:root {
+  --grid-size: 3;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.grid_container {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-size), 1fr);
+  grid-gap: 1rem;
+  width: fit-content;
+  border-radius: 10px;
+}
+
+.grid_item {
+  position: relative;
+  background: radial-gradient(circle, #f97316 0%, #db2777 50%, #111 100%);
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.hovered {
+  border: 2px solid #f97316;
+  background: radial-gradient(circle, #16a34a 0%, #065f46 50%, #111 90%);
+}
+
+.add_icon {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(4rem + 1vw);
+}
+
+/* Hide the file default styles. But when clicked, we get the file explorer! */
+.file {
+  cursor: pointer;
+  height: 100%;
+  width: 100%;
+  opacity: 0;
+}
+
+.image_wrapper {
+  cursor: pointer;
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  top: 0;
+  left: 0;
+  border-radius: inherit;
+}
+
+.image {
+  display: block;
+  width: 100%;
+  height: 100%;
+  border-radius: inherit;
+  object-fit: cover;
+}
+
+.delete_icon {
+  cursor: pointer;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: wheat;
+  border: 1px solid #d07309;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  visibility: hidden;
+}
+
+.image_wrapper:hover .delete_icon {
+  visibility: visible;
+}
