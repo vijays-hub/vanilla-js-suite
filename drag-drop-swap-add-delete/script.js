@@ -8,6 +8,9 @@ let draggedItem = null;
 // This will be used to keep track of the parent of the dragged item
 let draggedItemParent = null;
 
+let imageExists = false;
+let swappableImage = null;
+
 function onFileDragStart(event) {
   draggedItem = this; // this refers to the image wrapper
   draggedItemParent = this.parentNode; // this refers to the grid item
@@ -35,7 +38,24 @@ function onFileDragOver(event) {
   }
 }
 
-function onFileDragEnter(event) {}
+function onFileDragEnter(event) {
+  event.preventDefault();
+
+  /**
+   * When the dragged item enters the grid item, we will check for the existing image in the grid item.
+   * If there is an image, we will store that in a variable, which will be handy for us to swap when the
+   * drop event is triggered.
+   *
+   * Here, this refers to the grid item where the dragged item is being dropped.
+   */
+  const imageWrapper = this.querySelector(".image_wrapper");
+  if (imageWrapper !== null) {
+    imageExists = true;
+    swappableImage = imageWrapper;
+  } else {
+    imageExists = false;
+  }
+}
 
 function onFileDragLeave(event) {
   /**
@@ -51,9 +71,21 @@ function onFileDrop(event) {
    * 1. Remove the hovered class from the grid item, so that the user can see that the image is dropped.
    * 2. Mark the visibility of the dragged item to visible, so that the user can see the image being dropped.
    * 3. Append the dragged item to the grid item where the file is dropped.
+   *    - If there is an image in the grid item, we will swap the images.
+   *    - If there is no image, we will simply append the dragged item.
+   *    - We will also remove the dragged item from the parent grid item, since it's being dropped here.
+   *
+   * this -> refers to the grid item where the file is dropped.
    */
   this.classList.remove("hovered");
   draggedItem.style.visibility = "visible";
+
+  if (imageExists) {
+    draggedItemParent.appendChild(swappableImage);
+  }
+
+  draggedItemParent.removeChild(draggedItem);
+
   this.appendChild(draggedItem);
 }
 
