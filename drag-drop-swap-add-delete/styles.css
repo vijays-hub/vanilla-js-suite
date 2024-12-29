@@ -32,6 +32,12 @@ body {
   width: 150px;
   height: 150px;
   border-radius: 0.5rem;
+  transition: all 0.2s;
+}
+
+.hovered {
+  border: 2px solid #f97316;
+  background: radial-gradient(circle, #16a34a 0%, #065f46 50%, #111 90%);
 }
 
 .add_icon {
