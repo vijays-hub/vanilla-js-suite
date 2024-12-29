@@ -1,3 +1,53 @@
+@import url("../globalStyles.css");
+
 body {
-  background-color: white;
+  background-color: #000;
+  overflow: hidden;
+  font-family: Virgil;
+}
+
+:root {
+  --grid-size: 3;
+}
+
+.container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
+.grid_container {
+  display: grid;
+  grid-template-columns: repeat(var(--grid-size), 1fr);
+  grid-gap: 8px;
+  width: fit-content;
+  border-radius: 10px;
+}
+
+.grid_item {
+  cursor: pointer;
+  position: relative;
+  background: radial-gradient(circle, #f97316 0%, #db2777 50%, #111 100%);
+  display: inline-block;
+  width: 150px;
+  height: 150px;
+  border-radius: 0.5rem;
+}
+
+.add_icon {
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: calc(4rem + 1vw);
+}
+
+/* Hide the file default styles. But when clicked, we get the file explorer! */
+.file {
+  height: 100%;
+  width: 100%;
+  opacity: 0;
 }
