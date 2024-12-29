@@ -27,7 +27,18 @@ function onFileDragStart(event) {
   setTimeout(() => (this.style.visibility = "hidden"), 0);
 }
 
-function onFileDragEnd(event) {}
+function onFileDragEnd(event) {
+  /**
+   * There can be cases where the user might not drop the image on any grid item. In such cases,
+   * we should reset the visibility of the dragged item to visible. This way, the user can see
+   * the image again.
+   *
+   * this -> refers to the image wrapper
+   */
+  if (this.style.visibility === "hidden") {
+    this.style.visibility = "visible";
+  }
+}
 
 function onFileDragOver(event) {
   event.preventDefault(); // This helps to stop the dragover event from bubbling up to the parent element!
