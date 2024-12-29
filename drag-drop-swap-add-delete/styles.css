@@ -26,7 +26,6 @@ body {
 }
 
 .grid_item {
-  cursor: pointer;
   position: relative;
   background: radial-gradient(circle, #f97316 0%, #db2777 50%, #111 100%);
   display: inline-block;
@@ -47,6 +46,7 @@ body {
 
 /* Hide the file default styles. But when clicked, we get the file explorer! */
 .file {
+  cursor: pointer;
   height: 100%;
   width: 100%;
   opacity: 0;
@@ -59,7 +59,6 @@ body {
   width: 100%;
   top: 0;
   left: 0;
-  border: 2px solid wheat;
   border-radius: inherit;
 }
 
@@ -69,4 +68,26 @@ body {
   height: 100%;
   border-radius: inherit;
   object-fit: cover;
+}
+
+.delete_icon {
+  cursor: pointer;
+  position: absolute;
+  top: -10px;
+  left: -10px;
+  height: 1.5rem;
+  width: 1.5rem;
+  background-color: wheat;
+  border: 1px solid #d07309;
+  border-radius: 50%;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  visibility: hidden;
+}
+
+.image_wrapper:hover .delete_icon {
+  visibility: visible;
 }

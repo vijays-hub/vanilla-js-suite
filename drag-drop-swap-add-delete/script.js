@@ -2,7 +2,28 @@ const gridContainer = document.querySelector(".grid_container");
 
 const GRID_SIZE = 3;
 
-function addDeleteIcon(imageWrapper, file) {}
+function onDeleteIconClick(imageWrapper, file) {
+  /**
+   * The idea is to simply remove the image wrapper from the grid item. Additionally,
+   * we set the value of the file input to null so that the user can select a new image
+   * on the same grid item.
+   *
+   */
+  imageWrapper.remove();
+  file.value = null;
+}
+
+function addDeleteIcon(imageWrapper, file) {
+  const deleteIcon = document.createElement("div");
+  deleteIcon.className = "delete_icon";
+  deleteIcon.textContent = "x";
+
+  deleteIcon.addEventListener("click", () =>
+    onDeleteIconClick(imageWrapper, file)
+  );
+
+  imageWrapper.appendChild(deleteIcon);
+}
 
 function appendImageToGridItem(file, gridItem) {
   const selectedFile = file.files[0];
@@ -35,10 +56,6 @@ function appendImageToGridItem(file, gridItem) {
   if (selectedFile) {
     reader.readAsDataURL(selectedFile);
     imageWrapper.appendChild(image);
-
-    // Add the drag/drop event listeners
-    imageWrapper.addEventListener("dragstart", () => {});
-    imageWrapper.addEventListener("dragend", () => {});
   }
 
   gridItem.appendChild(imageWrapper);
